@@ -13,7 +13,7 @@ class ViewController: UIViewController, UITableViewDataSource {
 
     @IBOutlet weak var myTableView: UITableView!
     var animals = ["Cat","Dog","Bird","Pig","Horse","Whale"]
-    var year = ["3","5","10","2","6","3"]
+    var year = ["고양이","개","새","돼지","말","고래"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,5 +65,19 @@ class ViewController: UIViewController, UITableViewDataSource {
         cell.imageView?.image = UIImage(named: animals[row])
         return cell
     }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "addgo"  {
+            let AVC = segue.destination as! AddViewController
+            AVC.myData = animals[0]
+            AVC.myImage = animals[0]
+            AVC.myTitle = year[0]
+    }
+        else if segue.identifier == "go"{
+        let DVC = segue.destination as! DetailViewController
+            let Row = myTableView.indexPathForSelectedRow
+            DVC.Detail = animals[(Row?.row)!]
+            DVC.Img = animals[(Row?.row)!]
+        
 }
-
+}
+}
